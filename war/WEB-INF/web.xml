@@ -12,6 +12,19 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>CloudEsiee</servlet-name>
 		<url-pattern>/cloudesiee</url-pattern>
 	</servlet-mapping>
+	
+	<!-- URL -->
+	<servlet-mapping>
+		<servlet-name>TacheDeFond</servlet-name>
+		<url-pattern>/urlTacheDeFond</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Application -->
+	<servlet>
+		<servlet-name>TacheDeFond</servlet-name>
+		<servlet-class>com.esiee.TacheDeFondServlet</servlet-class>
+	</servlet>
+		
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>

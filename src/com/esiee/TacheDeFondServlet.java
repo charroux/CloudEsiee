@@ -13,21 +13,13 @@ import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.api.taskqueue.TaskOptions.Method;
 
 @SuppressWarnings("serial")
-public class CloudEsieeServlet extends HttpServlet {
+public class TacheDeFondServlet extends HttpServlet {
+	
+	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		
-		Queue queue = QueueFactory.getDefaultQueue();
-		queue.add(TaskOptions.Builder.withUrl("/urlTacheDeFond").method(Method.GET));
-	
+		System.out.println("Je suis la tache de fond");
 		
-		DatastoreService dataStore = DatastoreServiceFactory.getDatastoreService();
-		Entity etudiant = new Entity("Ecole");
-		etudiant.setProperty("nom", "Tintin");
-		etudiant.setProperty("age", 20);
-		dataStore.put(etudiant);
-		
-		resp.setContentType("text/plain");
-		resp.getWriter().println("Hello, world");
 	}
 }
