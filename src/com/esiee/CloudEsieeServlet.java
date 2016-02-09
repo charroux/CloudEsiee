@@ -19,13 +19,6 @@ public class CloudEsieeServlet extends HttpServlet {
 		
 		Queue queue = QueueFactory.getDefaultQueue();
 		queue.add(TaskOptions.Builder.withUrl("/urlTacheDeFond").method(Method.GET));
-	
-		
-		DatastoreService dataStore = DatastoreServiceFactory.getDatastoreService();
-		Entity etudiant = new Entity("Ecole");
-		etudiant.setProperty("nom", "Tintin");
-		etudiant.setProperty("age", 20);
-		dataStore.put(etudiant);
 		
 		resp.setContentType("text/plain");
 		resp.getWriter().println("Hello, world");

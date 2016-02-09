@@ -7,25 +7,29 @@ import javax.servlet.http.*;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.taskqueue.Queue;
 import com.google.appengine.api.taskqueue.QueueFactory;
 import com.google.appengine.api.taskqueue.TaskOptions;
 import com.google.appengine.api.taskqueue.TaskOptions.Method;
 
 @SuppressWarnings("serial")
-public class TacheDeFondServlet extends HttpServlet {
-	
-	
-	public void doGet(HttpServletRequest req, HttpServletResponse resp)
+public class RequeteServlet extends HttpServlet {
+	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		
 		DatastoreService dataStore = DatastoreServiceFactory.getDatastoreService();
-		Entity etudiant = new Entity("Ecole");
-		etudiant.setProperty("nom", "Tintin");
-		etudiant.setProperty("age", 20);
-		dataStore.put(etudiant);
 		
-		System.out.println("Je suis la tache de fond");
+		// recuperer ce qui vient du formulaire html
+		String nom = req.getParameter("nom");
 		
+		Query query = new Query("Ecole");
+		query.addFilter("nom", Query.FilterOperator.EQUAL, nom);
+		PreparedQuery pq = dataStore.prepare(query);
+		for(Entity entity: pq.asIterable()){
+			long age = (long) entity.getProperty("age");
+			System.out.println(age);
+		}
 	}
 }
