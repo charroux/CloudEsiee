@@ -35,7 +35,15 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<url-pattern>/urlServletRequete</url-pattern>
 	</servlet-mapping>
 	
+	<filter>
+		<filter-name>MonFiltreMultiTnant</filter-name>
+		<filter-class>com.esiee.MonFiltre</filter-class>
+	</filter>
 	
+	<filter-mapping>
+		<filter-name>MonFiltreMultiTnant</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
